@@ -1,0 +1,40 @@
+{% extends 'admin/layouts/base.html' %}
+
+{% block content %}
+<h1 class="mt-4">Daftar Manfat Buah</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+    <li class="breadcrumb-item active">Data Manfaat Buah</li>
+</ol>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Daftar Permainan Buah
+    </div>
+    <div class="card-body">
+        <a href="/admin/kandungan/create" class="btn btn-success mb-2">Tambah Manfaat Buah</a>
+        <div class="table-responsive">
+            <table id="datatablesSimple" class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nama Buah</th>
+                        <th>Gambar</th>
+                        <th>Manfaat Buah</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in data %}
+                    <tr>
+                        <td>{{ item.nama_buah }}</td>
+                        <td><img src="{{ url_for('static', filename='uploads/buah/' + item.gambar_buah) }}" width="80"></td>
+                        <td>{{ item.kandungan }}</td>    
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

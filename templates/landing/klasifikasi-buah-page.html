@@ -1,0 +1,82 @@
+{% extends 'landing/layouts/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg p-4 rounded">
+        <div class="card-body">
+            <h2 class="text-center mb-4">🍎 Klasifikasi Buah</h2>
+            <form method="POST" enctype="multipart/form-data" class="text-center mb-4">
+                <div class="input-group justify-content-center">
+                    <input type="file" class="form-control" name="file" accept="image/*" required />
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-plus-circle"></i> Upload
+                    </button>
+                </div>
+            </form>
+
+            {% if filename %}
+            <div class="row justify-content-center align-items-start mt-4">
+                <div class="col-md-5 text-center">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <img src="{{ url_for('static', filename='uploads/klasifikasi/' + filename) }}" class="img-fluid  shadow-sm" alt="Uploaded Image" />
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bg-light p-3 rounded shadow-sm">
+                        <h5><strong>Hasil Prediksi:</strong></h5>
+                        <p class="text-capitalize">{{ predicted_class }}</p>
+                        <h5><strong>Confidence:</strong></h5>
+                        <p>{{ (confidence * 100) | round(2) }}%</p>
+                        <h5><strong>Manfaat Buah:</strong></h5>
+                        <p>{{ manfaat }}</p>
+                        <button onclick="speakText()" class="btn btn-success mt-2">
+                            🔊 Dengarkan Manfaat Buah
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function speakText() {
+                    const synth = window.speechSynthesis;
+            
+                    // Cek apakah buah tidak dikenali
+                    const predictedClass = `{{ predicted_class }}`;
+                    const manfaatText = `{{ manfaat }}`;
+                    let textToSpeak = "";
+            
+                    if (predictedClass.toLowerCase() === "unknown") {
+                        textToSpeak = "Gambar ini belum dikenali. Mungkin jenis buah tersebut belum dilatih dalam sistem.";
+                    } else {
+                        textToSpeak = `Ini adalah buah ${predictedClass}. Manfaat buah ini: ${manfaatText}`;
+                    }
+            
+                    if (synth.speaking) synth.cancel();
+                    const utterThis = new SpeechSynthesisUtterance(textToSpeak);
+                    const voices = synth.getVoices();
+                    const indoVoice = voices.find(voice => voice.lang.startsWith('id')) || voices[0];
+                    utterThis.voice = indoVoice;
+                    synth.speak(utterThis);
+                }
+            
+                window.onload = function () {
+                    if ({{ 'true' if predicted_class else 'false' }}) {
+                        let synth = window.speechSynthesis;
+                        let voices = synth.getVoices();
+                        if (voices.length === 0) {
+                            synth.onvoiceschanged = () => speakText();
+                        } else {
+                            speakText();
+                        }
+                    }
+                };
+            </script>
+            
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% include 'landing/layouts/component/nav-menu.html' %}
+{% endblock %}

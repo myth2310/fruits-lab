@@ -1,0 +1,270 @@
+body {
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    padding-bottom: 200px;
+}
+
+.welcome-box {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    padding: 60px 50px;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.emoji {
+    font-size: 4.5rem;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-weight: bold;
+    color: #28a745;
+}
+
+
+
+.btn-start {
+    font-size: 1.2rem;
+    padding: 14px;
+    background: #28a745;
+    border: none;
+    color: white;
+    border-radius: 15px;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-start:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+.input-box {
+    margin-bottom: 25px;
+}
+
+input[type="text"] {
+    padding: 14px;
+    border-radius: 10px;
+    border: 2px solid #28a745;
+    width: 100%;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: #218838;
+    outline: none;
+}
+
+.game-card {
+    border-radius: 30px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 35px 12px 35px rgba(0, 0, 0, 0.25);
+    padding-bottom: 25px;
+    height: 1000px; /* diperbesar lagi */
+}
+
+.game-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 22px 45px rgba(0, 0, 0, 0.3);
+}
+
+.card-img-top {
+    height: 420px; /* diperbesar */
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+
+.card-title {
+    font-size: 1.5rem;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.btn-success {
+    font-size: 1.1rem;
+    padding: 12px 25px;
+    border-radius: 12px;
+}
+
+
+
+.navbar.fixed-bottom {
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.navbar a {
+    font-size: 0.85rem;
+}
+
+.navbar i {
+    font-size: 1.2rem;
+}
+
+.music-button {
+    position: fixed;
+    top: 50%;
+    right: 1%;
+    transform: translateY(-50%);
+    background-color: #ffffff;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.music-button:hover {
+    transform: translateY(-50%) scale(1.1);
+    background-color: #f0f0f0;
+}
+
+.music-icon {
+    font-size: 2rem;
+    color: #43a047;
+    transition: color 0.3s ease;
+}
+
+.music-icon.disabled {
+    color: #e53935;
+}
+
+.buah-img {
+    height: 300px;
+    object-fit: contain;
+    user-select: none;
+}
+.buah-card {
+    cursor: grab;
+}
+
+.buah-img:hover {
+    transform: scale(1.03);
+    transition: transform 0.1s ease;
+}
+
+
+#uploadArea {
+    min-height: 150px;
+    border: 2px dashed #0d6efd;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0d6efd;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    position: relative;
+}
+#uploadArea.dragover {
+    background-color: #e7f1ff;
+    border-color: #084298;
+}
+#uploadedPreview img {
+    max-height: 140px;
+    object-fit: contain;
+}
+
+.leaderboard-container {
+    background: #915f52;
+    border-radius: 25px;
+    padding: 40px 100px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.leaderboard-container h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.leaderboard-entry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.05);
+    padding: 20px 45px;
+    border-radius: 15px;
+    margin-bottom: 16px;
+    transition: transform 0.2s;
+}
+
+.leaderboard-entry:hover {
+    transform: scale(1.02);
+}
+
+.leaderboard-entry.top-1 {
+    background: #FFD700;
+    color: #000;
+    font-weight: bold;
+}
+
+.leaderboard-entry.top-2 {
+    background: #C0C0C0;
+    color: #000;
+    font-weight: bold;
+}
+
+.leaderboard-entry.top-3 {
+    background: #cd7f32;
+    color: #000;
+    font-weight: bold;
+}
+
+.rank {
+    width: 50px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #fff url('https://cdn-icons-png.flaticon.com/512/149/149071.png') center/cover no-repeat;
+    margin: 0 15px;
+    flex-shrink: 0;
+}
+
+.player-info {
+    flex: 1;
+    text-align: left;
+}
+
+.player-info .name {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.player-info .date {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.score {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000;
+    min-width: 70px;
+    text-align: right;
+}

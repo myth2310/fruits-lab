@@ -1,0 +1,34 @@
+{% extends 'landing/layouts/base.html' %}
+
+{% block content %}
+
+
+<div class="leaderboard-container m-4">
+    <h2>🏆 Leaderboard</h2>
+    {% for skor in skor_teratas %}
+    <div
+        class="leaderboard-entry {% if loop.index == 1 %}top-1{% elif loop.index == 2 %}top-2{% elif loop.index == 3 %}top-3{% endif %}">
+        <div class="rank">
+            {% if loop.index == 1 %}
+            🥇
+            {% elif loop.index == 2 %}
+            🥈
+            {% elif loop.index == 3 %}
+            🥉
+            {% else %}
+            {{ loop.index }}
+            {% endif %}
+        </div>
+        <div class="avatar"></div>
+        <div class="player-info">
+            <div class="name">{{ skor.nama_user }}</div>
+        </div>
+        <div class="score">{{ skor.skor }}</div>
+    </div>
+    {% else %}
+    <p class="text-center">Belum ada data skor.</p>
+    {% endfor %}
+</div>
+
+{% include 'landing/layouts/component/nav-menu.html' %}
+{% endblock %}

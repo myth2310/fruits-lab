@@ -1,0 +1,42 @@
+{% extends 'landing/layouts/base.html' %}
+
+{% block content %}
+<div class="overlay">
+  <div class="container mt-5 text-center">
+    <h1 class="display-4 fw-bold text-white mb-2" id="ucapan">Selamat Datang!</h1>
+    <p class="lead text-white mb-5">Kenali dan klasifikasikan buah-buahan dengan cara yang menyenangkan!</p>
+
+    <div class="row g-5 justify-content-center">
+      <!-- Kenali Buah -->
+      <div class="col-lg-4 col-md-6">
+        <a href="/kenali-buah">
+          <div class="card game-card h-100 text-center border-0 bg-transparent shadow-none">
+            <img src="{{ url_for('static', filename='menu1.png') }}" class="card-img-top" alt="Kenali Buah">
+          </div>
+        </a>
+      </div>
+
+      <!-- Klasifikasikan -->
+      <div class="col-lg-4 col-md-6">
+        <a href="/klasifikasi-buah">
+          <div class="card game-card h-100 text-center border-0 bg-transparent shadow-none">
+            <img src="{{ url_for('static', filename='menu2.png') }}" class="card-img-top" alt="Klasifikasikan Buah">
+          </div>
+        </a>
+      </div>
+
+      <!-- Game -->
+      <div class="col-lg-4 col-md-6">
+        <a href="/kuis-buah">
+          <div class="card game-card h-100 text-center border-0 bg-transparent shadow-none">
+            <img src="{{ url_for('static', filename='menu3.png') }}" class="card-img-top" alt="Game Buah">
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include 'landing/layouts/component/buble-sound.html' %}
+{% include 'landing/layouts/component/nav-menu.html' %}
+{% endblock %}

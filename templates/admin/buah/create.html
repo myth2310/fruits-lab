@@ -1,0 +1,29 @@
+{% extends 'admin/layouts/base.html' %}
+
+{% block content %}
+<h1 class="mt-4">Tambah Data Buah</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a href="">Dashboard</a></li>
+    <li class="breadcrumb-item active">Tambah Buah</li>
+</ol>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-plus me-1"></i>
+        Form Tambah Buah
+    </div>
+    <div class="card-body">
+        <form action="/admin/buah/store" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="nama_buah" class="form-label">Nama Buah</label>
+                <input type="text" name="nama_buah" class="form-control" id="nama_buah" required>
+            </div>
+            <div class="mb-3">
+                <label for="gambar_buah" class="form-label">Gambar Buah</label>
+                <input type="file" name="gambar_buah" class="form-control" id="gambar_buah" accept="image/*" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

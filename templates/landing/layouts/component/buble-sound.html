@@ -1,0 +1,31 @@
+<div class="music-button" id="musicButton">
+    <i class="fa-solid fa-volume-xmark" id="musicIcon"></i>
+</div>
+
+<audio id="backgroundMusic" loop>
+    <source src="{{ url_for('static', filename='music/bgs.mp3') }}" type="audio/mp3">
+    Your browser does not support the audio element.
+</audio>
+
+<script>
+    const nama = localStorage.getItem("namaUser") || "Pengguna";
+    document.getElementById('ucapan').textContent = "Selamat datang, " + nama + "!";
+
+    let musicPlaying = false;
+    const musicButton = document.getElementById('musicButton');
+    const musicIcon = document.getElementById('musicIcon');
+    const backgroundMusic = document.getElementById('backgroundMusic');
+
+    musicButton.addEventListener('click', function () {
+        if (musicPlaying) {
+            backgroundMusic.pause();
+            musicIcon.classList.remove('fa-volume-high');
+            musicIcon.classList.add('fa-volume-xmark');
+        } else {
+            backgroundMusic.play();
+            musicIcon.classList.remove('fa-volume-xmark');
+            musicIcon.classList.add('fa-volume-high');
+        }
+        musicPlaying = !musicPlaying;
+    });
+</script>

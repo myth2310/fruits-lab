@@ -1,0 +1,39 @@
+{% extends 'landing/layouts/base.html' %}
+
+{% block content %}
+
+<div class="welcome-box">
+    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="mb-4"> 
+    <div class="input-box">
+        <input type="text" id="nama" class="form-control" placeholder="Masukkan nama kamu...">
+    </div>
+    <button onclick="mulaiGame()" class="btn-start">Mulai Permainan</button>
+</div>
+
+<script>
+    function mulaiGame() {
+        const nama = document.getElementById('nama').value.trim();
+        if (nama === "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Tolong masukkan nama kamu!',
+                confirmButtonText: 'Tutup'
+            });
+            return;
+        }
+        localStorage.setItem("namaUser", nama);
+        Swal.fire({
+            icon: 'success',
+            title: 'Selamat datang, ' + nama + '!',
+            text: 'Ayo mulai petualangan buah!',
+            confirmButtonText: 'Mulai!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/menu";
+            }
+        });
+    }
+</script>
+
+{% endblock %}
