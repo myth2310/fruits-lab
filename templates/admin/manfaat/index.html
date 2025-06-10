@@ -21,20 +21,55 @@
                         <th>Nama Buah</th>
                         <th>Gambar</th>
                         <th>Manfaat Buah</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for item in data %}
                     <tr>
                         <td>{{ item.nama_buah }}</td>
-                        <td><img src="{{ url_for('static', filename='uploads/buah/' + item.gambar_buah) }}" width="80"></td>
-                        <td>{{ item.kandungan }}</td>    
+                        <td><img src="{{ url_for('static', filename='uploads/buah/' + item.gambar_buah) }}" width="80">
+                        </td>
+                        <td>{{ item.kandungan }}</td>
+                        <td>
+                            <a href="/admin/kandungan/edit/{{ item.id }}" class="btn btn-warning">Edit</a>
+                            <button class="btn btn-danger btn-hapus" data-id="{{ item.id }}">Hapus</button>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
-        
+
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+    const tableBody = document.querySelector('#datatablesSimple tbody');
+
+    tableBody.addEventListener('click', function(e) {
+        if (e.target.classList.contains('btn-hapus')) {
+            e.preventDefault();
+            const id = e.target.getAttribute('data-id');
+
+            Swal.fire({
+                title: 'Yakin ingin menghapus?',
+                text: "Data buah akan dihapus permanen!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Ya, hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = `/admin/kandungan/delete/${id}`;
+                }
+            });
+        }
+    });
+});
+
+</script>
 {% endblock %}

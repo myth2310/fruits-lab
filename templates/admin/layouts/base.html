@@ -10,6 +10,8 @@
     <link href="{{ url_for('static', filename='dashboard/css/styles.css') }}" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
         crossorigin="anonymous"></script>
+
+
 </head>
 
 <body class="sb-nav-fixed">
@@ -30,7 +32,27 @@
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Tambahkan ini di akhir template HTML kamu, misalnya sebelum </body> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            {% for category, message in messages %}
+            Swal.fire({
+                icon: '{{ 'success' if category == 'success' else 'error' if category == 'danger' else 'warning' }}',
+                title: {{ message| tojson }},
+            showConfirmButton: false,
+            timer: 3000
+            });
+        {% endfor %}
+        });
+    </script>
+    {% endif %}
+    {% endwith %}
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ url_for('static', filename='dashboard/js/scripts.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>

@@ -1,0 +1,36 @@
+{% extends 'admin/layouts/base.html' %}
+
+{% block content %}
+<h1 class="mt-4">Edit Data Buah</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a href="">Dashboard</a></li>
+    <li class="breadcrumb-item active">Edit Buah</li>
+</ol>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-edit me-1"></i>
+        Form Edit Buah
+    </div>
+    <div class="card-body">
+        <form action="/admin/buah/update/{{ buah.id }}" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="nama_buah" class="form-label">Nama Buah</label>
+                <input type="text" name="nama_buah" class="form-control" id="nama_buah" value="{{ buah.nama_buah }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="gambar_buah" class="form-label">Gambar Buah</label>
+                <input type="file" name="gambar_buah" class="form-control" id="gambar_buah" accept="image/*">
+                {% if buah.gambar_buah %}
+                    <small class="text-muted mb-2 mt-2">Gambar saat ini:</small><br>
+                </td>
+                <img src="{{ url_for('static', filename='uploads/buah/' ~ buah.gambar_buah) }}" width="100">
+   
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

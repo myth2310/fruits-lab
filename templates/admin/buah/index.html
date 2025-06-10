@@ -20,6 +20,7 @@
                     <th>No</th>
                     <th>Nama Buah</th>
                     <th>Gambar</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -30,6 +31,10 @@
                     <td>
                         <img src="{{ url_for('static', filename='uploads/buah/' ~ buah.gambar_buah) }}" width="100">
                     </td>
+                    <td>
+                        <a href="/admin/buah/edit/{{ buah.id }}" class="btn btn-warning">Edit</a>
+                        <button class="btn btn-danger btn-hapus" data-id="{{ buah.id }}">Hapus</button>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -37,4 +42,34 @@
         
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+    const tableBody = document.querySelector('#datatablesSimple tbody');
+
+    tableBody.addEventListener('click', function(e) {
+        if (e.target.classList.contains('btn-hapus')) {
+            e.preventDefault();
+            const id = e.target.getAttribute('data-id');
+
+            Swal.fire({
+                title: 'Yakin ingin menghapus?',
+                text: "Data buah akan dihapus permanen!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Ya, hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = `/admin/buah/delete/${id}`;
+                }
+            });
+        }
+    });
+});
+
+</script>
+
 {% endblock %}
